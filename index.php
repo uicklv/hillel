@@ -117,6 +117,6 @@ $rectangle = new Rectangle;
 
 //echo Shape::$name . PHP_EOL;
 //echo Rectangle::$name . PHP_EOL;
-
+//todo add new  functionality
 echo $shape::getName() . PHP_EOL;
 echo $rectangle::getName() . PHP_EOL;
