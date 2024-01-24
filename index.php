@@ -1,122 +1,158 @@
 <?php
+//declare(strict_types=1);
 
-//require_once 'MainController.php';
-//require_once 'Shape.php';
-//require_once 'DisplayInterface.php';
-//require_once 'ShapeInterface.php';
-//require_once 'Rectangle.php';
-//require_once 'Circle.php';
-//
-//
-//$rectangle = new Rectangle(400, 200);
-//$circle = new Circle(100);
-//
-//$controller = new MainController;
-//
-//$controller->index($circle);
-
-//class Person
+//function calculate(int|float $number1, int|float $number2): int|float|bool
 //{
-//    protected string $name;
-//    protected int $age;
-//
-//    public static $retirenmentAge = 65;
-//
-//    public static $counter = 0;
-//
-//    public function __construct(string $name, int $age)
-//    {
-//        self::$counter++;
-//        $this->setName($name);
-//        $this->setAge($age);
+//    if ($number1 <= 0 || $number2 <= 0) {
+//       throw new Exception('test exception');
 //    }
 //
-//    public function sayHello()
-//    {
-//        echo "Hello, $this->name! Your age - $this->age." . self::showAge() . PHP_EOL;
-//    }
+//    $result = $number1 * $number2;
 //
-//    public static function getCounter()
-//    {
-//        return self::$counter;
-//    }
-//
-//    public static function showAge(): string
-//    {
-//        return "Retirenment Age - " . self::$retirenmentAge;
-//    }
-//
-//    /**
-//     * @param int $age
-//     */
-//    public function setAge(int $age): void
-//    {
-//        if ($age <= 0) {
-//            throw new Exception("Invalid age.");
-//        }
-//        $this->age = $age;
-//    }
-//
-//    /**
-//     * @param string $name
-//     */
-//    public function setName(string $name): void
-//    {
-//        if (strlen($name) < 2) {
-//            throw new Exception("Invalid name.");
-//        }
-//        $this->name = $name;
-//    }
-//
-//    /**
-//     * @return int
-//     */
-//    public function getAge(): int
-//    {
-//        return $this->age;
-//    }
-//
-//    /**
-//     * @return string
-//     */
-//    public function getName(): string
-//    {
-//        return $this->name;
-//    }
+//    return $result;
 //}
 //
-//$person1 = new Person('Jim', 25);
-//$person2 = new Person('Kate', 25);
-//$person3 = new Person('Mike', 25);
-//$person4 = new Person('Mike', 25);
+//try {
+//    $result = calculate(-5, 5);
+//} catch (Exception $exception) {
+//    //todo
+//    echo $exception->getMessage();
+//}
+
+//function randArray(int $length, int $min = 1, int $max = 50): array
+//{
+//    $array = []; // array();
+//    for ($i = 0; $i < $length; $i++) {
+//        $array[$i] = rand($min, $max);
+//    }
 //
-//echo Person::getCounter(). PHP_EOL;
+//    return $array;
+//}
+//
+//$randArray = randArray(5);
 
-class Shape
-{
-    public static function name()
-    {
-        return 'Shape';
-    }
-    public static function getName()
-    {
-        return static::name();
-    }
-}
+//$sum = 0;
+//foreach ($randArray as $value) {
+//    $sum += $value;
+//}
+//
+//$sum2 = array_sum($randArray);
 
-class Rectangle extends Shape
-{
-    public static function name()
-    {
-        return 'Rectangle';
-    }
-}
+//echo $sum . PHP_EOL;
+//echo $sum2 . PHP_EOL;
+//
+//$reverseArray = [];
+//$lastKey = array_key_last($randArray);
+//for ($i = $lastKey; $i >= 0; $i--) {
+//    $reverseArray[] = $randArray[$i];
+//}
+//
+//$count = 0;
+////var_dump($reverseArray);
+//
+//$keys = ['sky', 'grass', 'sun'];
+//$values = ['blue', 'green', 'yellow'];
+//
+////$length = count($keys);
+//$newArray = array_combine($keys, $values);
+//
+//var_dump(array_keys($newArray));
+//var_dump(array_values($newArray));
+//var_dump(array_flip($newArray));
 
-$shape = new Shape;
-$rectangle = new Rectangle;
 
-//echo Shape::$name . PHP_EOL;
-//echo Rectangle::$name . PHP_EOL;
-//todo add new  functionality
-echo $shape::getName() . PHP_EOL;
-echo $rectangle::getName() . PHP_EOL;
+//function calculate(int|float $number1, int|float $number2): array
+//{
+//    $product = $number1 * $number2;
+//    $sum = $number1 + $number2;
+//    $minus = $number1 - $number2;
+//
+//    return [$product, $sum, $minus];
+//}
+
+//$calculateResult = calculate(10, 7);
+//
+//$product = $calculateResult[0];
+//$sum = $calculateResult[1];
+//$minus = $calculateResult[2];
+
+//list($product, $sum, $minus) = calculate(10, 7);
+//[$product, $sum, $minus] = calculate(10, 7);
+//
+//echo $product . PHP_EOL;
+//echo $sum . PHP_EOL;
+//echo $minus . PHP_EOL;
+//$names = "Jim, Kate, Mike";
+//
+//$arrayNames = explode(', ', $names);
+//$stringNames = implode('! ', $arrayNames);
+//var_dump($arrayNames);
+
+//$user = ['name' => 'Kate', 'age' => 26, 'location' => 'Lviv'];
+//
+//extract($user);
+//
+//echo(" $name $age  $location \n");
+
+//$name = 'Kate';
+//$age = 26;
+//$location = 'Lviv';
+//
+//$array = compact('name', 'age', 'location');
+
+//var_dump(randArray(10));
+
+
+//$array1 = ['test' => 1, 2, 3, 4];
+//$array2 = ['test' => 5, 6, 7, 8];
+//
+//$resultArray = array_merge($array1, $array2);
+//
+//var_dump($resultArray);
+
+//$array = array_fill(0, 15, '!');
+
+//var_dump($array);
+
+
+//function myMap(array $array, callable $function): array
+//{
+//    foreach ($array as $key => &$value) {
+//        $value = $function($value);
+//    }
+//
+//    return $array;
+//}
+//$array = [1 => 5, 2 => 1, 4 => 33];
+//
+//asort($array);
+//var_dump($array);
+
+//var_dump(myMap($array, fn ($number) => $number ** 2));
+//
+//
+////var_dump(array_map(fn ($number) => $number ** 2, $array));
+//
+//
+//array_walk($array, function (&$number) {
+//    $number = $number ** 2;
+//});
+//
+//var_dump($array);
+
+//const TEST = [];
+//const test = 'TEST2';
+
+
+//function test()
+//{
+//    define('TEST', 'TEST');
+//}
+
+//if (!defined('TEST')) {
+////    const TEST2 = 'TEST';
+//$test = 'TEST';
+//define($test, 'TEST');
+//const $test = [];
+//}
+//echo TEST;
