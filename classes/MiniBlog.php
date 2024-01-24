@@ -1,14 +1,13 @@
 <?php
 
-class Blog extends Post
+class MiniBlog extends Post
 {
-    private string $type = 'blog';
+    private string $type = 'miniblog';
     public function getInfo(): string
     {
-       $title = parent::getInfo();
+//       $title = parent::getInfo();
        $content = $this->getContent();
 
-       return $title . "<p>$content</p>";
+       return "<video src='$content'></video>";
     }
-
 }

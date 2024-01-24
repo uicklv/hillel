@@ -1,6 +1,6 @@
 <?php
 
-class MiniVideoBlog
+class MiniVideoBlog extends VideoBlog
 {
 
 }
