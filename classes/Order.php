@@ -4,11 +4,12 @@ class Order
 {
     private array $items = [];
 
-    private $discount;
+    private ?DiscountInterface $discount = null;
 
-    public function __construct(array $items)
+    public function __construct(array $items, ?DiscountInterface $discount = null)
     {
         $this->setItems($items);
+        $this->setDiscount($discount);
     }
 
     /**
@@ -44,10 +45,26 @@ class Order
             $total += $item['price'] * $item['amount'];
         }
 
-        if ($total >= 1000) {
-            $total -= $total * (10/100); // 10 percent
+        if (isset($this->discount)) {
+            $total = $this->getDiscount()->applyDiscount($total);
         }
 
         return $total;
+    }
+
+    /**
+     * @param DiscountInterface|null $discount
+     */
+    public function setDiscount(?DiscountInterface $discount): void
+    {
+        $this->discount = $discount;
+    }
+
+    /**
+     * @return DiscountInterface|null
+     */
+    public function getDiscount(): ?DiscountInterface
+    {
+        return $this->discount;
     }
 }

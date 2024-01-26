@@ -5,6 +5,18 @@ define('APP_DIR', __DIR__ . '/');
 require_once APP_DIR . 'functions.php';
 require_once APP_DIR . 'classes/GeneralPost.php';
 require_once APP_DIR . 'classes/Order.php';
+require_once APP_DIR . 'interfaces/Test.php';
+require_once APP_DIR . 'interfaces/DiscountInterface.php';
+require_once APP_DIR . 'classes/PercentageDiscount.php';
+require_once APP_DIR . 'classes/FixedDiscount.php';
+require_once APP_DIR . 'classes/Person.php';
+require_once APP_DIR . 'classes/A.php';
+require_once APP_DIR . 'classes/B.php';
+require_once APP_DIR . 'classes/C.php';
+require_once APP_DIR . 'traits/Math.php';
+require_once APP_DIR . 'traits/Validator.php';
+require_once APP_DIR . 'controllers/Controller.php';
+require_once APP_DIR . 'controllers/AuthController.php';
 //require_once APP_DIR . 'classes/Post.php';
 //require_once APP_DIR . 'classes/Blog.php';
 //require_once APP_DIR . 'classes/News.php';
@@ -30,19 +42,41 @@ require_once APP_DIR . 'classes/Order.php';
 //showPost($videoBlog);
 //showPost($miniVideoBlog);
 
-$items = [
-    ['name' => 'PC', 'price' => 25000, 'amount' => 2],
-    ['name' => 'PC mouse', 'price' => 4000, 'amount' => 1],
-    ['name' => 'Monitor', 'price' => 7000, 'amount' => 2],
-];
+//$items = [
+//    ['name' => 'PC', 'price' => 25000, 'amount' => 2],
+//    ['name' => 'PC mouse', 'price' => 4000, 'amount' => 1],
+//    ['name' => 'Monitor', 'price' => 7000, 'amount' => 2],
+//];
+//
+//try {
+//    $discount = new PercentageDiscount(50);
+//    $discountFixed = new FixedDiscount(2000, 10000);
+//    $discountFixed->test('my test text');
+//    $order = new Order($items, $discountFixed);
+//
+//   $order->calculateTotal();
+//    $person = new Person('Jim', 30);
 
-try {
-    $order = new Order($items);
+//    echo $person::$oldAge;
+//    Person::showInfo();
+////    echo $person->calculateOldAge();
+//} catch (Exception $exception) {
+//    echo $exception->getMessage();
+//
+//    Logger::log($exception->getMessage());
+//    exit;
+//}
+//$a = new A;
+//$b = new B;
+//$c = new C;
+//
+//echo $a->getStaticName() . PHP_EOL;
+//echo $b->getStaticName() . PHP_EOL;
+//echo $c->getStaticName() . PHP_EOL;
 
-    echo $order->calculateTotal();
-} catch (Exception $exception) {
-    echo $exception->getMessage();
-    exit;
-}
+$controller = new AuthController;
+$controller->register();
+//$controller->max('test', 11);
+//$controller->mathMax('test', 11);
 
 
