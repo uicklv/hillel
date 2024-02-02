@@ -1,4 +1,9 @@
 <?php
+
+function plusPercent(int|float $number, int $percent): int|float
+{
+    return $number + ($number * ($percent / 100));
+}
 function showPost(Post $post): void
 {
     echo $post->getInfo();
