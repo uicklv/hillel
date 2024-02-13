@@ -56,3 +56,43 @@ function getTemplate(string $path, array $variables = []): string
 
     return ob_get_clean();
 }
+
+function view(string $path, array $variables = []): bool
+{
+    $view = new View;
+    return $view->render($path, $variables);
+}
+
+function showErrors(): void
+{
+    if (Session::exists('validation_errors')) {
+        $errors = Session::get('validation_errors');
+        $html = '<div style="color: red;">';
+        foreach ($errors as $error) {
+            $html .= "- $error; <br>";
+        }
+        $html .= "</div>";
+
+        echo $html;
+    }
+}
+
+function showError(string $key): void
+{
+    if (Session::exists('validation_errors')) {
+        $errors = Session::get('validation_errors');
+        if (array_key_exists($key, $errors)) {
+            $html = '<div style="color: red;">';
+            foreach ($errors as $keyError => $error) {
+                if ($keyError === $key) {
+                    $html .= "- $error; <br>";
+                }
+            }
+            $html .= "</div>";
+
+            echo $html;
+
+            Session::removeValidationError($key);
+        }
+    }
+}
