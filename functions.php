@@ -96,3 +96,18 @@ function showError(string $key): void
         }
     }
 }
+
+function showMessage(string $key): void
+{
+    if (Session::exists($key)) {
+        $message = Session::get($key);
+        echo "<div style='color: green;'>$message</div>";
+        Session::remove($key);
+    }
+}
+
+function url(string $path): string
+{
+    $path = trim($path, '/');
+    return APP_URL . $path;
+}

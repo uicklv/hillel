@@ -8,8 +8,20 @@
     <title>Login</title>
 </head>
 <body>
-    <form>
-        <input type="email" name="email" >
-    </form>
+<h3>Login form</h3>
+<?php showMessage('success') ?>
+<form action="/login" method="POST">
+    <div>
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="email">
+        <?php showError('email') ?>
+    </div>
+    <div>
+        <label for="password">Your Password</label>
+        <input type="password" id="password" name="password">
+        <?php showError('password') ?>
+    </div>
+    <input type="submit" value="Login">
+</form>
 </body>
 </html>

@@ -6,10 +6,7 @@ class AuthController extends Controller
 
     public function login()
     {
-        //todo return view login
-
-        echo "Login page";
-        exit;
+        return view('login.php');
     }
 
     public function register()
@@ -29,16 +26,57 @@ class AuthController extends Controller
         $name = Request::get('name');
         $email = Request::get('email');
         $age = Request::get('age', 'int');
-        $password = Request::get('password', 'int');
+        $password = password_hash(Request::get('password'), PASSWORD_BCRYPT);
 
-        UserRepository::create(['name' => $name, 'password' => $password, 'email' => $email, 'age' => $age]);
-        exit;
+        $connector = Connector::getInstance();
+        $repository = new UserRepository($connector);
+        $repository->create(['name' => $name, 'password' => $password, 'email' => $email, 'age' => $age]);
+
+        Session::set('success', 'Registered Successfully!');
+
+        Response::redirect(url('login'));
     }
 
     public function auth()
     {
-        echo "auth method";
-        exit;
+        $this->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        $email = Request::get('email');
+        $password = Request::get('password');
+
+        $connector = Connector::getInstance();
+        $repository = new UserRepository($connector);
+
+        if ($user = $repository->auth($email, $password)) {
+            $token = md5(time() . '_' . $user->id);
+            $repository->createSession($user->id, $token);
+
+            setcookie('auth', $token, time() + 3600 * 24 * 2);
+
+            Auth::setUser($user);
+
+            Response::redirect(url('blogs'));
+        }
+
+        Session::set('validation_errors', ['email' => 'Invalid email or password']);
+        Response::redirect('http://localhost:8080/login');
+    }
+
+    public function logout()
+    {
+        Auth::protect();
+
+        setcookie('auth', '', time() - 3600);
+        session_destroy();
+
+        $connector = Connector::getInstance();
+        $repository = new UserRepository($connector);
+        $repository->deleteSession(Auth::user()->id);
+
+        Response::redirect(url('login'));
     }
 
 }

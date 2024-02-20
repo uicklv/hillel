@@ -1,6 +1,4 @@
 <div>
-    <h3><?= $title ?></h3>
-    <p>
-        <?= $content ?>
-    </p>
+    <h3>Blogs page</h3>
+    <a href="/logout">Logout</a>
 </div>
